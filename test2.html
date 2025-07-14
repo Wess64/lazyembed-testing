@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta property="og:title" content="Pixel Canvas">
+    <meta property="og:description" id="embed-desc">
+    <script>
+        const colors = {
+            '1':'🟥','2':'🟧','3':'🟨','4':'🟩',
+            '5':'🟦','6':'🟪','7':'🟫','8':'⬛',
+            '9':'⬜','a':'🔳','b':'🔲','c':'◼️',
+            'd':'◻️','e':'🔺','f':'🔻'
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            let grid = Array(64).fill('•');
+            const raw = window.location.search.slice(1).split('_')[0];
+            
+            // Process raw triplets
+            for (let i = 0; i < raw.length; i += 3) {
+                const t = raw.substr(i, 3);
+                if (t.length === 3) {
+                    const x = parseInt(t[1],16)%8, y = parseInt(t[2],16)%8;
+                    if (colors[t[0]]) grid[y*8+x] = colors[t[0]];
+                }
+            }
+            
+            // Build grid with newlines
+            let desc = '';
+            for (let i = 0; i < 64; i++) {
+                desc += grid[i];
+                if (i%8 === 7) desc += '\n';
+            }
+            
+            document.getElementById('embed-desc').content = desc;
+        });
+    </script>
+</head>
+<body></body>
+</html>

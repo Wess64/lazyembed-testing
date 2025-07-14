@@ -2,13 +2,24 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta property="og:title" content="Text Embed">
-    <meta property="og:description" id="embed-content">
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const params = new URLSearchParams(window.location.search);
             const content = params.get('t') || ' ';
-            document.getElementById('embed-content').content = content;
+            const titleTag = document.createElement('meta');
+            titleTag.setAttribute('property', 'og:title');
+            titleTag.content = 'mewo';
+            
+            const descTag = document.createElement('meta');
+            descTag.setAttribute('property', 'og:description');
+            descTag.content = content;
+            document.head.appendChild(titleTag);
+            document.head.appendChild(descTag);
+            
+            const rescrape = document.createElement('meta');
+            rescrape.setAttribute('property', 'og:url');
+            rescrape.content = window.location.href.split('#')[0] + '#' + Date.now();
+            document.head.appendChild(rescrape);
         });
     </script>
 </head>

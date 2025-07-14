@@ -2,36 +2,13 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta property="og:title" id="embed-title">
+    <meta property="og:title" content="Text Embed">
+    <meta property="og:description" id="embed-content">
     <script>
-        const colors = {
-            '1':'🟥','2':'🟧','3':'🟨','4':'🟩',
-            '5':'🟦','6':'🟪','7':'🟫','8':'⬛',
-            '9':'⬜','a':'🔳','b':'🔲','c':'◼️',
-            'd':'◻️','e':'🔺','f':'🔻'
-        };
-
         document.addEventListener('DOMContentLoaded', () => {
             const params = new URLSearchParams(window.location.search);
-            const colorString = params.get('p') || '';
-            let art = '';
-            
-            // Build the grid from color string (left-right, top-bottom)
-            for (let i = 0; i < 64 && i < colorString.length; i++) {
-                art += colors[colorString[i]] || '⬜';
-                if ((i + 1) % 8 === 0) art += '\n';
-            }
-            
-            // Pad with empty squares if needed
-            while (art.length < 64) {
-                art += '⬜';
-                if ((art.length + 1) % 8 === 0) art += '\n';
-            }
-            
-            // Add indicator (edit this line to change the indicator)
-            const indicator = '✏️';
-            
-            document.getElementById('embed-title').content = `${art}\n${indicator}`;
+            const content = params.get('t') || ' ';
+            document.getElementById('embed-content').content = content;
         });
     </script>
 </head>

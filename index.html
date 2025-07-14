@@ -1,18 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta property="og:image" content="https://wess64.github.io/lazyembed-testing/media/funny.jpg">
-  <meta name="twitter:card" content="summary_large_image">
-  <title> </title>
-  <style>
-    body {
-      margin: 0;
-      background: black;
-    }
-  </style>
-</head>
-<body>
-  <img src="media/funny.jpg" alt="funny" style="display:block; width:100vw; height:auto;">
-</body>
+<html>
+  <head>
+    <meta property="og:image" content="https://wess64.github.io/lazyembed-testing/media/funny.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="theme-color" content="#000000">
+
+    <!-- Delay redirect so Discord scrapes first -->
+    <script>
+      const ua = navigator.userAgent.toLowerCase();
+      const isBot = ua.includes("discordbot") || ua.includes("twitterbot") || ua.includes("embed") || ua.includes("facebookexternalhit");
+
+      if (!isBot) {
+        window.location.replace("https://google.com");
+      }
+    </script>
+
+    <style>
+      /* Make it look like a blank image page */
+      html, body {
+        margin: 0;
+        background: #000;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      img {
+        width: 100%;
+        height: auto;
+        max-width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <img src="media/funny.jpg" alt="funny">
+  </body>
 </html>
